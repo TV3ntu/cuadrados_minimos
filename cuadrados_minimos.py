@@ -39,3 +39,42 @@ plt.legend()
 
 # Mostrar el gráfico
 plt.show()
+
+
+# Calcular la primera derivada numéricamente
+primera_derivada = np.gradient(curva_cuadratica, dias)
+
+# Calcular la segunda derivada numéricamente
+segunda_derivada = np.gradient(primera_derivada, dias)
+
+# Crear el gráfico de la primera derivada
+plt.figure()
+plt.plot(dias, primera_derivada)
+plt.xlabel('Días')
+plt.ylabel('Primera Derivada')
+plt.title('Primera Derivada de la Curva Cuadrática')
+plt.show()
+
+# Crear el gráfico de la segunda derivada
+plt.figure()
+plt.plot(dias, segunda_derivada)
+plt.xlabel('Días')
+plt.ylabel('Segunda Derivada')
+plt.title('Segunda Derivada de la Curva Cuadrática')
+plt.show()
+
+# Superponer la primera derivada en el gráfico existente
+plt.plot(dias, curva_cuadratica, label='Curva Cuadrática', color='blue')
+plt.plot(dias, primera_derivada, label='Primera Derivada', color='orange')
+
+# Superponer la segunda derivada en el gráfico existente
+plt.plot(dias, segunda_derivada, label='Segunda Derivada', color='yellow')
+
+# Configurar el gráfico
+plt.xlabel('Días')
+plt.ylabel('Infectados')
+plt.title('Curva Cuadrática con Derivadas')
+plt.legend()
+
+# Mostrar el gráfico
+plt.show()
