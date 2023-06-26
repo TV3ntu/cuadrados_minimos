@@ -2,7 +2,7 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 from scipy.stats import linregress
-
+from scipy.optimize import curve_fit
 # Leer los datos del archivo Excel
 df = pd.read_csv('ACUMULADOS vs DIAS.csv')
 
@@ -35,7 +35,11 @@ plt.plot(dias, curva_cuadratica, label=f'Curva Cuadrática: y = {b:.2f}x^{a:.2f}
 # Ajustar una curva exponencial (y = be^(ax))
 a, b, r, _, _ = linregress(dias, np.log(infectados))
 curva_exponencial = b * np.exp(a * dias)
+
 plt.plot(dias, curva_exponencial, label=f'Curva Exponencial: y = {b:.2f}e^({a:.2f}x) (r = {r:.2f})', color='purple')
+
+# Calcular el tiempo de duplicación
+tiempo_duplicacion = np.log(2) / a
 
 # Configurar el gráfico
 plt.xlabel('Días')
@@ -85,6 +89,7 @@ plt.legend()
 # Mostrar el gráfico
 plt.show()
 
+print("Tiempo de duplicación: {:.2f} días".format(tiempo_duplicacion))
 
 print('Discusiones sobre los resultados obtenidos:')
 print('------------------------------------------')
@@ -92,3 +97,4 @@ print('1. Las curvas nos proporciona distintas aproximaciones de la evolución d
 print('2  Los gráficos de la primera y segunda derivada de la curva cuadrática nos permiten visualizar cómo cambia la tasa de cambio de los casos infectados a medida que pasa el tiempo.')
 print('3. Finalmente, al superponer las curvas podemos tener representación visual de la relación entre la curva de casos infectados, su tasa de cambio y su aceleración.')
 print('4. Podemos entonces concluir con la observación de las curvas, que los infectados crecen de forma exponencial, pero que su tasa de cambio y aceleración se reducen con el tiempo, por lo que a medida que pase el tiempo la curva de infectados se irá aplanando. ')
+print('5. Además, el tiempo de duplicación de los casos infectados es de 12.85 días, lo que significa que cada 12.85 días se duplica el número de casos infectados, demostrando el poder del crecimiento exponencial y para este caso en particular, lo rápido que es necesario actuar rápidamente en términos sanitarios para aplanar la curva y disminuir todos estos factores.')
