@@ -84,3 +84,11 @@ plt.legend()
 
 # Mostrar el gráfico
 plt.show()
+
+
+print('Discusiones sobre los resultados obtenidos:')
+print('------------------------------------------')
+print('1. Las curvas nos proporciona distintas aproximaciones de la evolución de los casos infectados a lo largo del tiempo.')
+print('2  Los gráficos de la primera y segunda derivada de la curva cuadrática nos permiten visualizar cómo cambia la tasa de cambio de los casos infectados a medida que pasa el tiempo.')
+print('3. Finalmente, al superponer las curvas podemos tener representación visual de la relación entre la curva de casos infectados, su tasa de cambio y su aceleración.')
+print('4. Podemos entonces concluir con la observación de las curvas, que los infectados crecen de forma exponencial, pero que su tasa de cambio y aceleración se reducen con el tiempo, por lo que a medida que pase el tiempo la curva de infectados se irá aplanando. ')
