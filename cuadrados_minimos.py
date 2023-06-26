@@ -18,11 +18,17 @@ a, b, r, _, _ = linregress(dias, infectados)
 linea_recta = a * dias + b
 plt.plot(dias, linea_recta, label=f'Línea Recta: y = {a:.2f}x + {b:.2f} (r = {r:.2f})', color='red')
 
-# Ajustar una curva cuadrática (y = bx^a)
+# Ajustar una ecuación de potencia (y = bx^a)
 p, cov = np.polyfit(np.log(dias), np.log(infectados), deg=1, cov=True)
 a = p[0]
 b = np.exp(p[1])
-r = np.sqrt(1 - np.diag(cov)[1] / np.diag(cov)[0])
+#r = np.sqrt(1 - np.diag(cov)[1] / np.diag(cov)[0])
+# Calcular el coeficiente de correlación
+residuals = np.log(infectados) - (a * np.log(dias) + np.log(b))
+ss_residuals = np.sum(residuals**2)
+ss_total = np.sum((np.log(infectados) - np.mean(np.log(infectados)))**2)
+r = 1 - (ss_residuals / ss_total)
+
 curva_cuadratica = b * np.power(dias, a)
 plt.plot(dias, curva_cuadratica, label=f'Curva Cuadrática: y = {b:.2f}x^{a:.2f} (r = {r:.2f})', color='green')
 
